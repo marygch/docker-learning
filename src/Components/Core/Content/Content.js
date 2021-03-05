@@ -1,11 +1,17 @@
 import React from "react";
+import { Layout } from "antd";
 
-const Content = (pros) => {
+const { Content, Footer } = Layout;
+
+const Body = (pros) => {
   return (
-    <div className="containers" style={{ padding: "30px" }}>
-      {pros.children}
-    </div>
+    <>
+      <Content style={{ padding: "0 50px" }}>
+        <div className="site-layout-content"> {pros.children}</div>
+      </Content>
+      <Footer style={{ textAlign: "center" }}>Maria Garcia</Footer>
+    </>
   );
 };
 
-export default Content;
+export default Body;
