@@ -39,13 +39,13 @@ const MenuExamples = ({ onSelectOption }) => {
       style={{ width: 256 }}
     >
       <SubMenu key="sub1" icon={<RightCircleOutlined />} title="docker">
-        {Object.keys(docker || {}).map((dockerExample) => {
-          const newName = docker[dockerExample]?.name;
+        {(docker || []).map((dockerExample) => {
+          const newName = dockerExample?.name;
           return (
             <Menu.Item
               key={newName}
               onClick={() => {
-                onSelectOption({ header: "docker", ...docker[dockerExample] });
+                onSelectOption({ header: "docker", ...dockerExample });
               }}
             >
               {newName}
@@ -54,15 +54,15 @@ const MenuExamples = ({ onSelectOption }) => {
         })}
       </SubMenu>
       <SubMenu key="sub2" icon={<AppstoreOutlined />} title="docker-compose">
-        {Object.keys(dockerCompose || {}).map((dockerExample) => {
-          const newName = dockerCompose[dockerExample]?.name;
+        {(dockerCompose || []).map((dockerExample) => {
+          const newName = dockerExample?.name;
           return (
             <Menu.Item
               key={newName}
               onClick={() => {
                 onSelectOption({
                   header: "docker-compose",
-                  ...dockerCompose[dockerExample],
+                  ...dockerExample,
                 });
               }}
             >
@@ -72,15 +72,15 @@ const MenuExamples = ({ onSelectOption }) => {
         })}
       </SubMenu>
       <SubMenu key="sub4" icon={<SettingOutlined />} title="kubernets">
-        {Object.keys(kubernets || {}).map((dockerExample) => {
-          const newName = kubernets[dockerExample]?.name;
+        {(kubernets || []).map((dockerExample) => {
+          const newName = dockerExample?.name;
           return (
             <Menu.Item
               key={newName}
               onClick={() => {
                 onSelectOption({
                   header: "kubernets",
-                  ...kubernets[dockerExample],
+                  ...dockerExample,
                 });
               }}
             >

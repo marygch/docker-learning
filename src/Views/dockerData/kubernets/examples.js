@@ -1,6 +1,6 @@
 import project1 from "./project1";
 import project2 from "./project2";
-import project3  from './project3';
+import project3 from "./project3";
 
 const miFirsExample = [
   {
@@ -75,14 +75,14 @@ const miFirsExample = [
   },
 ];
 
-export default {
-  frontExample: {
+export default [
+  {
     name: "deployement",
     description: "Deployment example for  general review",
     folder: "na",
     data: miFirsExample,
   },
-  backendExample: {
+  {
     name: "POD-mysql",
     description: "POD utilizando la imagen de mysql",
     notes: [
@@ -91,18 +91,18 @@ export default {
     folder: "kubernets/project1",
     data: project1,
   },
-  backendExample2: {
+  {
     name: "POD-mysql-node",
     description: "POD utilizando dos contendores: la imagen de mysql y node",
     notes: ["Mapear informacion del POD a variables de entorno"],
     folder: "kubernets/project2",
     data: project2,
   },
-  backendExample3: {
-    name: "POD-mysql-node",
+  {
+    name: "POD-mysql-node-3",
     description: "POD ejemplificando variables de ambiente y conecciones",
     notes: ["Mapear informacion del POD a variables de entorno"],
     folder: "kubernets/project2",
     data: project3,
   },
-};
+];

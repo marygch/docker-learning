@@ -5,17 +5,13 @@ const miFirsExample = {
   TO: "Y",
 };
 
-const frontExample = {
-  name: "Example 1",
-  data: miFirsExample,
-};
-
-const frontExample2 = {
-  name: "Example 2",
-  data: miFirsExample,
-};
-
-export default {
-  frontExample,
-  frontExample2,
-};
+export default [
+  {
+    name: "Example 1",
+    data: miFirsExample,
+  },
+  {
+    name: "Example 2",
+    data: miFirsExample,
+  },
+];

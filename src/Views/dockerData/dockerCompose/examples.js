@@ -4,9 +4,7 @@ const dockerCompose1 = {
   ---
   FROM: X
   TO: Y
-`
+`,
 };
 
-export default {
-  dockerCompose1,
-};
+export default [];
