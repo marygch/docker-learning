@@ -77,12 +77,6 @@ const miFirsExample = [
 
 export default [
   {
-    name: "deployement",
-    description: "Deployment example for  general review",
-    folder: "na",
-    data: miFirsExample,
-  },
-  {
     name: "POD-mysql",
     description: "POD utilizando la imagen de mysql",
     notes: [
@@ -90,6 +84,12 @@ export default [
     ],
     folder: "kubernets/project1",
     data: project1,
+  },
+  {
+    name: "deployement",
+    description: "Deployment example for  general review",
+    folder: "na",
+    data: miFirsExample,
   },
   {
     name: "POD-mysql-node",

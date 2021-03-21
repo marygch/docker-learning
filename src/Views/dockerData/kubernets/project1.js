@@ -37,4 +37,4 @@ const project1 = {
   },
 };
 
-export default project1;
+export default [project1];

@@ -58,4 +58,4 @@ const project2 = {
   },
 };
 
-export default project2;
+export default [project2];

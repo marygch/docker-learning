@@ -90,4 +90,4 @@ const project3 = {
   },
 };
 
-export default project3;
+export default [project3];

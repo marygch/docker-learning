@@ -1,43 +1,53 @@
 import React, { useState } from "react";
-import { CopyBlock, dracula } from "react-code-blocks";
+import { CopyBlock, dracula, monoBlue } from "react-code-blocks";
 import { Radio, Row, PageHeader, Col, Descriptions } from "antd";
 
+// tema 8  y 16 atomOneLight
 const YAML = require("json-to-pretty-yaml");
 
-const GetCode = ({ code, mode }) => {
-  const isJson = mode && mode === "json";
-  if (Array.isArray(code)) {
-    return code.map((element) => {
-      const formatedCode = isJson
-        ? JSON.stringify(element, null, " ")
-        : YAML.stringify(element);
-      return (
-        <Col className="gutter-row">
+const formatCode = (mode, data) => {
+  return {
+    json: JSON.stringify(data, null, " "),
+    yaml: YAML.stringify(data),
+  }[mode];
+};
+
+const GetCode = ({ data, mode, code, codeColors }) => {
+  const dataToRender = [];
+  if (code) {
+    code.forEach((element, index) => {
+      const themeColor = codeColors && codeColors[index] ? monoBlue : dracula;
+
+      dataToRender.push(
+        <Col span={12}>
+          <CopyBlock
+            language="jsx"
+            text={element || "/** Select an example **/"}
+            codeBlock
+            theme={themeColor}
+            showLineNumbers={false}
+          />
+        </Col>
+      );
+    });
+  }
+  if (Array.isArray(data)) {
+    data.forEach((element) => {
+      const formatedCode = formatCode(mode, element);
+      dataToRender.push(
+        <Col span={12}>
           <CopyBlock
             language="jsx"
             text={formatedCode || "/** Select an example **/"}
             codeBlock
             theme={dracula}
             showLineNumbers={false}
-            codeContainerStyle={{ width: 400 }}
           />
         </Col>
       );
     });
   }
-  const formatedCode = isJson
-    ? JSON.stringify(code, null, " ")
-    : YAML.stringify(code);
-  return (
-    <CopyBlock
-      language="jsx"
-      text={formatedCode || "/** Select an example **/"}
-      codeBlock
-      theme={dracula}
-      showLineNumbers={false}
-      codeContainerStyle={{ width: 800 }}
-    />
-  );
+  return dataToRender;
 };
 
 const CodeTabs = ({ dockerExample }) => {
@@ -58,10 +68,15 @@ const CodeTabs = ({ dockerExample }) => {
             {dockerExample?.description || "Not Defined"}
           </Descriptions.Item>
           <Descriptions.Item label="Notes" span={24}>
-            {dockerExample?.notes || "Not Defined"}
+            {dockerExample?.notes?.map((item) => (
+              <>
+                {item}
+                <br />
+              </>
+            )) || "Not Defined"}
           </Descriptions.Item>
         </Descriptions>
-        
+
         <Col span={4}>
           <Radio.Group
             onChange={(e) => {
@@ -77,11 +92,12 @@ const CodeTabs = ({ dockerExample }) => {
       </Row>
 
       <Row className="code-container" gutter={16}>
-        {dockerExample?.data ? (
-          <GetCode code={dockerExample?.data} mode={mode} />
-        ) : (
-          []
-        )}
+        <GetCode
+          code={dockerExample?.code}
+          data={dockerExample?.data}
+          codeColors={dockerExample?.codeColors}
+          mode={mode}
+        />
       </Row>
     </>
   );
